@@ -1,25 +1,24 @@
 import React, {Component} from 'react'
 
-class CurrentlyReading extends Component {
+class BookShelf extends Component {
     render() {
         return(
             <div className="bookshelf">
-                <h2 className="bookshelf-title">Currently Reading</h2>
+                <h2 className="bookshelf-title">{this.props.title}</h2>
                 <div className="bookshelf-books">
                 <ol className="books-grid">
-                    {this.props.books.map((book) => (
+                    {this.props.books.filter((book) => book.shelf === `${this.props.shelf}`).map((book) => (
                         <li key={book.id}>
                             <div className="book">
-                                {console.log(this.props.books)}
                                 <div className="book-top">
                                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                 <div className="book-shelf-changer">
                                     <select>
                                     <option value="none" disabled>Move to...</option>
                                     <option value="currentlyReading">Currently Reading</option>
-                                    <option value="wantToRead">Want to Read</option>
+                                    <option value="wantToRead" onClick={() => this.props.onChangeShelf(book, 'wantToRead')}>Want to Read</option>
                                     <option value="read" onClick={() => this.props.onChangeShelf(book, 'read')}>Read</option>
-                                    <option value="none">None</option>
+                                    <option value="none" onClick={() => this.props.onChangeShelf(book, 'none')}>None</option>
                                     </select>
                                 </div>
                                 </div>
@@ -35,7 +34,7 @@ class CurrentlyReading extends Component {
     }
 }
 
-export default CurrentlyReading
+export default BookShelf
 
 
 
