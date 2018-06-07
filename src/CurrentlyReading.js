@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import BooksApp from './App';
-import BookShelfChanger from './BookShelfChanger'
 
 class CurrentlyReading extends Component {
     render() {
@@ -10,12 +8,20 @@ class CurrentlyReading extends Component {
                 <div className="bookshelf-books">
                 <ol className="books-grid">
                     {this.props.books.map((book) => (
-                        <li>
+                        <li key={book.id}>
                             <div className="book">
                                 {console.log(this.props.books)}
                                 <div className="book-top">
                                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                <BookShelfChanger/>
+                                <div className="book-shelf-changer">
+                                    <select>
+                                    <option value="none" disabled>Move to...</option>
+                                    <option value="currentlyReading">Currently Reading</option>
+                                    <option value="wantToRead">Want to Read</option>
+                                    <option value="read" onClick={() => this.props.onChangeShelf(book, 'read')}>Read</option>
+                                    <option value="none">None</option>
+                                    </select>
+                                </div>
                                 </div>
                                 <div className="book-title">{book.title}</div>
                                 <div className="book-authors">{book.authors}</div>

@@ -8,9 +8,6 @@ import CurrentlyReading from './CurrentlyReading'
 class BooksApp extends React.Component {
   state = {
     books: [],
-    toReadBooks: [],
-    readBooks: [],
-    readingBooks: [],
 
     /**
      * TODO: Instead of using this state variable to keep track of which page
@@ -22,9 +19,14 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
-    BooksAPI.getAll().then((readingBooks) => {
-      this.setState({readingBooks})
+    BooksAPI.getAll().then((books) => {
+      this.setState({books})
     })
+  }
+
+  changeShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+    console.log(book)
   }
 
   render() {
@@ -58,8 +60,8 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                {console.log(this.state.readingBooks)}
-                <CurrentlyReading books={this.state.readingBooks}/>
+                {console.log(this.state.books)}
+                <CurrentlyReading onChangeShelf={this.changeShelf} books={this.state.books}/>
                 <ToRead books={this.state.toReadBooks}/>
                 <Read books={this.state.readBooks}/>
               </div>
