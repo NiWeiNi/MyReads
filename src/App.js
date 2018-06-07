@@ -58,7 +58,7 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                {console.log(this.state.books)}
+                {console.log(this.state.readingBooks)}
                 <CurrentlyReading books={this.state.readingBooks}/>
                 <ToRead books={this.state.toReadBooks}/>
                 <Read books={this.state.readBooks}/>
