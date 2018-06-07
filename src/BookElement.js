@@ -2,6 +2,11 @@ import React, {Component} from 'react'
 import BookShelfChanger from './BookShelfChanger'
 
 class BookElement extends Component {
+    // State the shelf it belongs
+    state = {
+        shelf: ''
+    }
+
     render() {
         return(
             <li>
