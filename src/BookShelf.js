@@ -13,12 +13,12 @@ class BookShelf extends Component {
                                 <div className="book-top">
                                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                 <div className="book-shelf-changer">
-                                    <select>
-                                    <option value="none" disabled>Move to...</option>
-                                    <option value="currentlyReading">Currently Reading</option>
-                                    <option value="wantToRead" onClick={() => this.props.onChangeShelf(book, 'wantToRead')}>Want to Read</option>
-                                    <option value="read" onClick={() => this.props.onChangeShelf(book, 'read')}>Read</option>
-                                    <option value="none" onClick={() => this.props.onChangeShelf(book, 'none')}>None</option>
+                                    <select value={this.state.value} onClick={(event) => this.props.onChangeShelf(event, book)}>
+                                        <option value="none" disabled>Move to...</option>
+                                        <option value="currentlyReading">Currently Reading</option>
+                                        <option value="wantToRead">Want to Read</option>
+                                        <option value="read">Read</option>
+                                        <option value="none">None</option>
                                     </select>
                                 </div>
                                 </div>

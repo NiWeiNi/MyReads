@@ -16,15 +16,25 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
+  // Fetch all books from API
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({books})
     })
   }
 
-  changeShelf = () => {
-    // BooksAPI.update(book, shelf)
-    console.log("hello")
+  // Change books from shelves
+  changeShelf = (event, book) => { 
+    BooksAPI.update(book, event.target.value).then(
+      // Assign book the selected shelf
+      book.shelf = event.target.value,
+      // Set the new state to re-render
+      this.setState((state) => ({
+        books: state.books.filter((b) => b.shelf !== 'none')
+      })
+      )
+    )
+    console.log(book, event.target.value)
   }
 
   render() {
