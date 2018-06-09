@@ -1,4 +1,6 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookShelf from './BookShelf'
@@ -6,15 +8,7 @@ import BooksSearch from './BooksSearch'
 
 class BooksApp extends React.Component {
   state = {
-    books: [],
-
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    showSearchPage: false
+    books: []
   }
 
   // Fetch all books from API
@@ -35,25 +29,25 @@ class BooksApp extends React.Component {
       })
       )
     )
-    console.log(this.state.books, event.target.value)
+    console.log(book, event.target.value)
   }
 
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
+        <Route exact path='/query' render={() => (
           <BooksSearch
             books={this.state.books}
             onChangeShelf={this.changeShelf}
           />
-        ) : (
+        )}/>
+        <Route exact path='/' render={() => (
           <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
               <div>
-                {console.log(this.state.books)}
                 <BookShelf
                 title='Currently Reading'
                 shelf='currentlyReading'
@@ -72,13 +66,14 @@ class BooksApp extends React.Component {
               </div>
             </div>
             <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+              <Link
+                to='/query'
+              >Add a book</Link>
             </div>
-          </div>
-        )}
+            </div>
+        )}/>
       </div>
-    )
-  }
+  )}
 }
 
 export default BooksApp
