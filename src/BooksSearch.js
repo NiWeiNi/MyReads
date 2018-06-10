@@ -11,11 +11,13 @@ class BooksSearch extends Component {
 
     // Search books
     searchBooks = (query) => {
-        this.setState({query})
-        BooksAPI.search(query)
-            .then((searchedBooks) => {this.setState({searchedBooks}); console.log(this.state.searchedBooks)}     
+        let trimQuery = query.trim()
+        this.setState({query: trimQuery})
+        BooksAPI.search(trimQuery)
+            .then((response) => (response && response.length)?
+                this.setState({searchedBooks: response})
+                :   this.setState({searchedBooks: []}) 
         )
-        
     }
 
     render() {
@@ -47,13 +49,14 @@ class BooksSearch extends Component {
             <div className="search-books-results">
                 <h2 className="bookshelf-title">Results</h2>
                 <ol className="books-grid">
+                    {console.log(this.state.searchedBooks)}
                     {this.state.searchedBooks.map((book) => (
                         <li key={book.id}>
                             <div className="book">
                                 <div className="book-top">
                                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                 <div className="book-shelf-changer">
-                                    <select defaultValue = {this.props.shelf} onClick={(event) => this.props.onChangeShelf(event, book)}>
+                                    <select defaultValue = {book.shelf} onClick={(event) => this.props.onChangeShelf(event, book)}>
                                         <option value="none" disabled>Move to...</option>
                                         <option value="currentlyReading">Currently Reading</option>
                                         <option value="wantToRead">Want to Read</option>
