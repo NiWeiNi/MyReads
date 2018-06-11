@@ -18,20 +18,6 @@ class BooksApp extends React.Component {
     })
   }
 
-  // Change books from shelves
-  changeShelf = (event, book) => {
-    BooksAPI.update(book, event.target.value).then(
-      // Assign book the selected shelf
-      book.shelf = event.target.value,
-      // Set the new state to re-render
-      this.setState((state) => ({
-        books: state.books.filter((b) => b.shelf !== 'none')
-      })
-      )
-    )
-    console.log(book, event.target.value)
-  }
-
   render() {
     return (
       <div className="app">
