@@ -35,20 +35,23 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <div>
                 <BookShelf
-                title='Currently Reading'
-                shelf='currentlyReading'
-                onChangeShelf={this.changeShelf}
-                books={this.state.books}/>
+                  title='Currently Reading'
+                  shelf='currentlyReading'
+                  onChangeShelf={this.changeShelf}
+                  books={this.state.books}
+                />
                 <BookShelf
-                title='Want to Read'
-                shelf='wantToRead'
-                onChangeShelf={this.changeShelf}
-                books={this.state.books}/>
+                  title='Want to Read'
+                  shelf='wantToRead'
+                  onChangeShelf={this.changeShelf}
+                  books={this.state.books}
+                />
                 <BookShelf
-                title='Read'
-                shelf='read'
-                onChangeShelf={this.changeShelf}
-                books={this.state.books}/>
+                  title='Read'
+                  shelf='read'
+                  onChangeShelf={this.changeShelf}
+                  books={this.state.books}
+                />
               </div>
             </div>
             <div className="open-search">
