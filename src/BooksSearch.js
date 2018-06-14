@@ -17,7 +17,7 @@ class BooksSearch extends Component {
         BooksAPI.search(trimQuery)
             .then((response) => (response && response.length) ?
                 this.setState({searchedBooks: response.map((searchBook) => {
-                    const index = this.props.books.map((book) => book.id).indexOf(searchBook.id) 
+                    const index = this.props.books.map(book => book.id).indexOf(searchBook.id) 
                     return index > -1 ? this.props.books[index] : searchBook
                 })
             })
