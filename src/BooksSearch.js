@@ -14,7 +14,7 @@ class BooksSearch extends Component {
         let trimQuery = query.trim()
         this.setState({query: trimQuery})
         BooksAPI.search(trimQuery)
-            .then((response) => (response && response.length)?
+            .then((response) => (response && response.length) ?
                 this.setState({searchedBooks: response})
                 :   this.setState({searchedBooks: []}) 
         )

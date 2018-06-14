@@ -25,7 +25,7 @@ class BooksApp extends React.Component {
       book.shelf = event.target.value,
       // Set the new state to re-render
       this.setState((state) => ({
-        books: state.books.filter((b) => b.shelf !== 'none')
+        books: state.books.filter((b) => b.id !== book.id).concat(book.shelf !== 'none'? book : 'none')
       })
       )
     )
@@ -49,26 +49,31 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <div>
                 <BookShelf
-                title='Currently Reading'
-                shelf='currentlyReading'
-                onChangeShelf={this.changeShelf}
-                books={this.state.books}/>
+                  title='Currently Reading'
+                  shelf='currentlyReading'
+                  onChangeShelf={this.changeShelf}
+                  books={this.state.books}
+                />
                 <BookShelf
-                title='Want to Read'
-                shelf='wantToRead'
-                onChangeShelf={this.changeShelf}
-                books={this.state.books}/>
+                  title='Want to Read'
+                  shelf='wantToRead'
+                  onChangeShelf={this.changeShelf}
+                  books={this.state.books}
+                />
                 <BookShelf
-                title='Read'
-                shelf='read'
-                onChangeShelf={this.changeShelf}
-                books={this.state.books}/>
+                  title='Read'
+                  shelf='read'
+                  onChangeShelf={this.changeShelf}
+                  books={this.state.books}
+                />
               </div>
             </div>
             <div className="open-search">
               <Link
                 to='/search'
-              >Add a book</Link>
+              >
+                Add a book
+              </Link>
             </div>
             </div>
         )}/>
