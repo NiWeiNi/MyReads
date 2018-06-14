@@ -18,6 +18,20 @@ class BooksApp extends React.Component {
     })
   }
 
+  // Change books from shelves
+  changeShelf = (event, book) => {
+    BooksAPI.update(book, event.target.value).then(
+      // Assign book the selected shelf
+      book.shelf = event.target.value,
+      // Set the new state to re-render
+      this.setState((state) => ({
+        books: state.books.filter((b) => b.id !== book.id).concat(book.shelf !== 'none'? book : 'none')
+      })
+      )
+    )
+    console.log(book, event.target.value)
+  }
+
   render() {
     return (
       <div className="app">
@@ -57,7 +71,9 @@ class BooksApp extends React.Component {
             <div className="open-search">
               <Link
                 to='/search'
-              >Add a book</Link>
+              >
+                Add a book
+              </Link>
             </div>
             </div>
         )}/>

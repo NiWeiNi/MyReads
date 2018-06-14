@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
-import Book from './Book.js'
+import sortBy from 'sort-by'
 
 class BookShelf extends Component {
     
     render() {
+        // Sort books by title
+        this.props.books.sort(sortBy('title'))
+
         return(
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{this.props.title}</h2>
