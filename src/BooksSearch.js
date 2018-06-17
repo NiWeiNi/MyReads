@@ -15,6 +15,7 @@ class BooksSearch extends Component {
         let trimQuery = query.trim()
         this.setState({query: trimQuery})
         BooksAPI.search(trimQuery)
+        // Check if resposne is not empty and substitute books of the query that matches those in App state.boooks with the latest one 
             .then(response => (response && response.length) ?
                 this.setState({searchedBooks: response.map(searchBook => {
                     const book = this.props.books.find(book => book.id === searchBook.id)
@@ -36,6 +37,7 @@ class BooksSearch extends Component {
         return(
             <div className="search-books">
             <div className="search-books-bar">
+                {/* Link to return to ami page */}
                 <Link
                     to='/'
                     className="close-search"
@@ -58,6 +60,7 @@ class BooksSearch extends Component {
                 />
               </div>
             </div>
+            {/* Content of the search result */}
             <div className="search-books-results">
                 <h2 className="bookshelf-title">Results</h2>
                 <ol className="books-grid">

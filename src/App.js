@@ -35,12 +35,14 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
+        {/* Create a path to keep in sync page and url */}
         <Route exact path='/search' render={() => (
           <BooksSearch
             books={this.state.books}
             onChangeShelf={this.changeShelf}
           />
         )}/>
+        {/* Create a path to keep in sync page and url */}
         <Route exact path='/' render={() => (
           <div className="list-books">
             <div className="list-books-title">
@@ -48,6 +50,7 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
+                {/* For each bookshelf, adds a bookshelf component */}
                 <BookShelf
                   title='Currently Reading'
                   shelf='currentlyReading'
@@ -69,6 +72,7 @@ class BooksApp extends React.Component {
               </div>
             </div>
             <div className="open-search">
+              {/* link to search page */}
               <Link
                 to='/search'
               >
