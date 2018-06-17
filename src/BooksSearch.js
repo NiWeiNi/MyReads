@@ -15,10 +15,14 @@ class BooksSearch extends Component {
         let trimQuery = query.trim()
         this.setState({query: trimQuery})
         BooksAPI.search(trimQuery)
-            .then((response) => (response && response.length) ?
-                this.setState({searchedBooks: response.map((searchBook) => {
-                    const index = this.props.books.map(book => book.id).indexOf(searchBook.id) 
-                    return index > -1 ? this.props.books[index] : searchBook
+            .then(response => (response && response.length) ?
+                this.setState({searchedBooks: response.map(searchBook => {
+                    const book = this.props.books.find(book => book.id === searchBook.id)
+                    if(book) {
+                        return book
+                    } else {
+                        return searchBook
+                    }
                 })
             })
                 :   this.setState({searchedBooks: []}) 
@@ -63,8 +67,8 @@ class BooksSearch extends Component {
                                 <div className="book-top">
                                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})`: null }}></div>
                                 <div className="book-shelf-changer">
-                                    <select defaultValue = {book.shelf ? book.shelf : 'none'} onClick={(event) => this.props.onChangeShelf(event, book)}>
-                                        <option value="none" disabled>Move to...</option>
+                                    <select defaultValue = {book.shelf ? book.shelf : "none"} onClick={(event) => this.props.onChangeShelf(event, book)}>
+                                        <option value="noneSelected" disabled>Move to...</option>
                                         <option value="currentlyReading">Currently Reading</option>
                                         <option value="wantToRead">Want to Read</option>
                                         <option value="read">Read</option>
