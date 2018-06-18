@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Route} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
@@ -6,7 +6,7 @@ import './App.css'
 import BookShelf from './BookShelf'
 import BooksSearch from './BooksSearch'
 
-class BooksApp extends React.Component {
+class BooksApp extends Component {
   state = {
     books: []
   }
@@ -33,12 +33,15 @@ class BooksApp extends React.Component {
   }
 
   render() {
+    // Destructure state to keep code readble
+    const { books } = this.state
+    
     return (
       <div className="app">
         {/* Create a path to keep in sync page and url */}
         <Route exact path='/search' render={() => (
           <BooksSearch
-            books={this.state.books}
+            books={books}
             onChangeShelf={this.changeShelf}
           />
         )}/>
@@ -55,19 +58,19 @@ class BooksApp extends React.Component {
                   title='Currently Reading'
                   shelf='currentlyReading'
                   onChangeShelf={this.changeShelf}
-                  books={this.state.books}
+                  books={books}
                 />
                 <BookShelf
                   title='Want to Read'
                   shelf='wantToRead'
                   onChangeShelf={this.changeShelf}
-                  books={this.state.books}
+                  books={books}
                 />
                 <BookShelf
                   title='Read'
                   shelf='read'
                   onChangeShelf={this.changeShelf}
-                  books={this.state.books}
+                  books={books}
                 />
               </div>
             </div>

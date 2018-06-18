@@ -31,8 +31,9 @@ class BooksSearch extends Component {
     }
 
     render() {
+        const { searchedBooks, query } = this.state
         // Sort books by title
-        this.state.searchedBooks.sort(sortBy('title'))
+        searchedBooks.sort(sortBy('title'))
 
         return(
             <div className="search-books">
@@ -55,7 +56,7 @@ class BooksSearch extends Component {
                 <input
                     type="text"
                     placeholder="Search by title or author"
-                    value={this.state.query}
+                    value={query}
                     onChange={(event) => this.searchBooks(event.target.value)}
                 />
               </div>
@@ -64,7 +65,7 @@ class BooksSearch extends Component {
             <div className="search-books-results">
                 <h2 className="bookshelf-title">Results</h2>
                 <ol className="books-grid">
-                    {this.state.searchedBooks.map((book) => (
+                    {searchedBooks.map((book) => (
                         <li key={book.id}>
                             <div className="book">
                                 <div className="book-top">

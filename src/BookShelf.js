@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import sortBy from 'sort-by'
 
 const BookShelf = ({books, title, shelf, onChangeShelf}) => {
