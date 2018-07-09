@@ -3,11 +3,25 @@
 Seventh project from Udacity´s FEND.
 App to keep track of books you have read, currently reading or want to read.
 
-## Instructions
+## Getting Started
 
-1. Download or clone this repository
-2. Install all project dependencies with `npm install`
-3. Start the development server with `npm start`
+- Download or clone this repository. 
+
+### Prerequisites
+
+- You need [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) installed.
+
+### Installing
+
+From the directory, inside the folder, install all project dependecies with git bash:
+```
+npm install
+```
+And right after, start the development server with git bash:
+```
+npm start
+```
+The web should open in your default browser.
 
 ## Backend Server
 
@@ -55,6 +69,14 @@ search(query)
 ## Important
 The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
 
-## Create React App
+## Built With
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+* [React](https://reactjs.org/) - JS library
+
+## Contributing
+
+Academic exercise, pull request may not be accepted
+
+## License
+
+This project is licensed under the MIT License - see the License.md file for details
